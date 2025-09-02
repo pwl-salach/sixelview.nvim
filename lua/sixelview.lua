@@ -5,13 +5,13 @@ local config = require("sixelview.config")
 
 ---@param pattern string[]
 ---@param delay_ms number
-local sixelview_cmd = function(pattern, delay_ms)
+local sixelview_cmd = function(pattern, delay_ms, constraints)
 	local img_path = vim.fn.expand("%:p")
 	if not utils.is_image_buffer(img_path, pattern) then
 		vim.notify("The current buffer is not an image.", vim.log.levels.ERROR)
 		return
 	end
-	utils.defer_display_sixel(delay_ms)
+	utils.defer_display_sixel(delay_ms, constraints)
 end
 
 ---@param opts sixelview.Options
@@ -23,13 +23,13 @@ M.setup = function(opts)
 			pattern = opts.pattern,
 			group = vim.api.nvim_create_augroup("sixelview_kjuq", {}),
 			callback = function()
-				utils.defer_display_sixel(opts.delay_ms)
+				utils.defer_display_sixel(opts.delay_ms, opts.constraints)
 			end,
 		})
 	end
 
 	vim.api.nvim_create_user_command("SixelView", function()
-		sixelview_cmd(opts.pattern, opts.delay_ms)
+		sixelview_cmd(opts.pattern, opts.delay_ms, opts.constraints)
 	end, {})
 end
 

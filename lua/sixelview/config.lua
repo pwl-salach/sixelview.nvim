@@ -46,6 +46,13 @@ M.default = {
 	-- time of delay before showing image
 	-- try setting this duration longer if you have a trouble showing image
 	delay_ms = 100,
+
+	constraints = {
+		min_width = nil,
+		max_width = nil,
+		min_height = nil,
+		max_height = nil,
+	},
 }
 
 return M
