@@ -1,4 +1,11 @@
+---@class sixelview.ImageConstraints
+---@field min_width number?
+---@field max_width number?
+---@field min_height number?
+---@field max_height number?
+
 ---@class sixelview.Options
----@field pattern string[] list of supported source format by `img2sixel`
----@field auto boolean whether showing an image automatically when an image buffer is opened
----@field delay_ms number time of delay before showing image
+---@field pattern string[]
+---@field auto boolean
+---@field delay_ms number
+---@field constraints sixelview.ImageConstraints?
